@@ -72,3 +72,14 @@ async function employeeRole(employee_id, role_id) {
   const [rows, fields] = await connection.execute(query, data);
   return rows;
 }
+
+module.exports = {
+  addEmployee,
+  addRole,
+  addDepartment,
+  viewEmployees,
+  viewDepartment,
+  viewRole,
+  employeeRole
+};
+
