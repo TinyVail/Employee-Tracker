@@ -23,34 +23,25 @@ mysql.createConnection({
 
 
 // use the 'INSERT INTO' sql command on the 'employee' table to create a new employee 
-function addEmployee(first_name, last_name, manager_id, role_id) {
+async function addEmployee(first_name, last_name, manager_id, role_id) {
   const query = `INSERT INTO employee (first_name, last_name, manager_id, role_id) VALUES (?, ?, ?, ?)`;
   const data = [first_name, last_name, manager_id, role_id];
-  connection.execute(query, data, (err, results, fields) => {
-    // what to do when data is recieved
-    console.log(err);
-    console.log(results);
-  });
+  const [rows, fields] = await connection.execute(query, data);
+  return rows;
 }
 
-function addRole(title, salary, department_id) {
+async function addRole(title, salary, department_id) {
   const query = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
   const data = [title, salary, department_id];
-  connection.execute(query, data, (err, results, fields) => {
-    // what to do when data is recieved
-    console.log(err);
-    console.log(results);
-  });
+  const [rows, fields] = await connection.execute(query, data);
+  return rows;
 };
 
-function addDepartment(name) {
+async function addDepartment(name) {
   const query = `INSERT INTO department (name) VALUES (?)`;
   const data = [name];
-  connection.execute(query, data, (err, results, fields) => {
-    // what to do when data is recieved
-    console.log(err);
-    console.log(results);
-  });
+  const [rows, fields] = await connection.execute(query, data);
+  return rows;
 };
 
 async function viewEmployees() {
