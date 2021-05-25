@@ -80,16 +80,15 @@ const choiceActions = {
         inquirer.prompt([
             {
                 type: 'input',
-                name: 'employee-firstname',
-                message: 'What is the new employee\'s first name?'
+                name: 'employee-update',
+                message: 'What is the ID of the employee you would like to update?'
             }, {
                 type: 'input',
-                name: 'employee-lastname',
-                message: 'What is the new employee\'s last name?'
+                name: 'employee-role-id-update',
+                message: 'What is the new role ID?'
             }]
         ).then(async (answer) => {
-            await sqlproxy.addEmployee(answer["employee-firstname"],
-             answer["employee-lastname"], answer["employee-manager_id"], answer["employee-role_id"]);
+            await sqlproxy.employeeRole(answer["employee-update"], answer["employee-role-id-update"]);
             mainMenu();
         });
     },
